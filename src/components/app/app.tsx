@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import { Article } from '../article/Article';
@@ -8,8 +8,24 @@ import { defaultArticleState } from './../../constants/articleProps';
 import styles from './app.module.scss';
 
 export const App = () => {
+	const rootRef = useRef<HTMLElement>(null);
+	const [applyOptionState, setApplyOptionState] = useState<
+		typeof defaultArticleState
+	>({
+		...defaultArticleState,
+	});
+
+	useEffect(() => {
+		rootRef.current &&
+			rootRef.current.style.setProperty(
+				'--bg-color',
+				applyOptionState.backgroundColor.value
+			);
+	}, [applyOptionState]);
+
 	return (
 		<main
+			ref={rootRef}
 			className={clsx(styles.main)}
 			style={
 				{
@@ -20,7 +36,7 @@ export const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm setApplyOptionState={setApplyOptionState} />
 			<Article />
 		</main>
 	);

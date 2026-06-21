@@ -3,9 +3,13 @@
 	left: 0;
 	width: 616px;
 	height: 100%;
-	overflow: scroll;
 	transform: translate(-616px);
 	transition: transform 0.5s ease;
+}
+
+.wrapper {
+	height: 100%;
+	overflow: scroll;
 }
 
 .container_open {
@@ -16,6 +20,7 @@
 	display: flex;
 	flex-shrink: 0;
 	flex-direction: column;
+	gap: 50px;
 	box-sizing: border-box;
 	width: 616px;
 	height: auto;

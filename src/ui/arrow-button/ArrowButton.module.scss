@@ -1,6 +1,7 @@
 .container {
-	position: fixed;
+	position: absolute;
 	top: 31px;
+	left: 100%;
 	display: flex;
 	flex-shrink: 0;
 	justify-content: center;
@@ -19,10 +20,6 @@
 
 .container:active {
 	background-color: #787878;
-}
-
-.container_open {
-	transform: translate(616px);
 }
 
 .arrow {

@@ -47,11 +47,11 @@ export const App = () => {
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': defaultArticleState.fontFamilyOption.value,
-					'--font-size': defaultArticleState.fontSizeOption.value,
-					'--font-color': defaultArticleState.fontColor.value,
-					'--container-width': defaultArticleState.contentWidth.value,
-					'--bg-color': defaultArticleState.backgroundColor.value,
+					'--font-family': applyOptionState.fontFamilyOption.value,
+					'--font-size': applyOptionState.fontSizeOption.value,
+					'--font-color': applyOptionState.fontColor.value,
+					'--container-width': applyOptionState.contentWidth.value,
+					'--bg-color': applyOptionState.backgroundColor.value,
 				} as CSSProperties
 			}>
 			<ArticleParamsForm setApplyOptionState={setApplyOptionState} />

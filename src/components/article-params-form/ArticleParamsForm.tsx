@@ -42,9 +42,11 @@ export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
 
 	const handleOnChange =
 		(name: keyof ArticleStateType) => (selectedOption: OptionType) => {
-			setTempOptionsState({
-				...tempOptionsState,
-				[name]: selectedOption,
+			setTempOptionsState((prev) => {
+				return {
+					...prev,
+					[name]: selectedOption,
+				};
 			});
 		};
 
@@ -64,16 +66,16 @@ export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
 	};
 
 	return (
-		<>
+		<aside
+			ref={rootRef}
+			className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 			<ArrowButton
 				isOpen={isOpen}
 				onClick={() => {
 					setIsOpen((prev) => !prev);
 				}}
 			/>
-			<aside
-				ref={rootRef}
-				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
+			<div className={styles.wrapper}>
 				<form
 					className={styles.form}
 					onSubmit={handleSubmit}
@@ -118,7 +120,7 @@ export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
 						<Button title='Применить' htmlType='submit' type='apply' />
 					</div>
 				</form>
-			</aside>
-		</>
+			</div>
+		</aside>
 	);
 };

@@ -1,11 +1,18 @@
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { Select } from 'src/ui/select';
+import { Text } from 'src/ui/text';
+import { RadioGroup } from 'src/ui/radio-group';
+import { Separator } from 'src/ui/separator';
 
 import {
 	backgroundColors,
 	OptionType,
 	defaultArticleState,
+	fontFamilyOptions,
+	fontSizeOptions,
+	fontColors,
+	contentWidthArr,
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
@@ -72,11 +79,40 @@ export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
 					className={styles.form}
 					onSubmit={handleSubmit}
 					onReset={resetOptionState}>
+					<Text as={'h1'} size={31} weight={800} uppercase={true}>
+						Задайте параметры
+					</Text>
+					<Select
+						options={fontFamilyOptions}
+						selected={tempOptionsState.fontFamilyOption}
+						title={'Шрифт'}
+						onChange={handleOnChange('fontFamilyOption')}
+					/>
+					<RadioGroup
+						name='fontSizeOption'
+						options={fontSizeOptions}
+						selected={tempOptionsState.fontSizeOption}
+						title={'Размер шрифта'}
+						onChange={handleOnChange('fontSizeOption')}
+					/>
+					<Select
+						options={fontColors}
+						selected={tempOptionsState.fontColor}
+						title={'Цвет шрифта'}
+						onChange={handleOnChange('fontColor')}
+					/>
+					<Separator />
 					<Select
 						options={backgroundColors}
 						selected={tempOptionsState.backgroundColor}
 						title={'Цвет фона'}
 						onChange={handleOnChange('backgroundColor')}
+					/>
+					<Select
+						options={contentWidthArr}
+						selected={tempOptionsState.contentWidth}
+						title={'Ширина контента'}
+						onChange={handleOnChange('contentWidth')}
 					/>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' htmlType='reset' type='clear' />

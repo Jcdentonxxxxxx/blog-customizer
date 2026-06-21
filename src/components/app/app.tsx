@@ -16,11 +16,28 @@ export const App = () => {
 	});
 
 	useEffect(() => {
-		rootRef.current &&
+		if (rootRef.current) {
 			rootRef.current.style.setProperty(
 				'--bg-color',
 				applyOptionState.backgroundColor.value
 			);
+			rootRef.current.style.setProperty(
+				'--font-family',
+				applyOptionState.fontFamilyOption.value
+			);
+			rootRef.current.style.setProperty(
+				'--font-size',
+				applyOptionState.fontSizeOption.value
+			);
+			rootRef.current.style.setProperty(
+				'--font-color',
+				applyOptionState.fontColor.value
+			);
+			rootRef.current.style.setProperty(
+				'--container-width',
+				applyOptionState.contentWidth.value
+			);
+		}
 	}, [applyOptionState]);
 
 	return (

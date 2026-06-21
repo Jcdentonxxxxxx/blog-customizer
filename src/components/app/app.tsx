@@ -3,15 +3,16 @@ import clsx from 'clsx';
 
 import { Article } from '../article/Article';
 import { ArticleParamsForm } from '../article-params-form/ArticleParamsForm';
-import { defaultArticleState } from './../../constants/articleProps';
+import {
+	defaultArticleState,
+	ArticleStateType,
+} from './../../constants/articleProps';
 
 import styles from './app.module.scss';
 
 export const App = () => {
 	const rootRef = useRef<HTMLElement>(null);
-	const [applyOptionState, setApplyOptionState] = useState<
-		typeof defaultArticleState
-	>({
+	const [applyOptionState, setApplyOptionState] = useState<ArticleStateType>({
 		...defaultArticleState,
 	});
 

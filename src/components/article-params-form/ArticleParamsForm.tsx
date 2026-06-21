@@ -13,6 +13,7 @@ import {
 	fontSizeOptions,
 	fontColors,
 	contentWidthArr,
+	ArticleStateType,
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
@@ -21,18 +22,16 @@ import clsx from 'clsx';
 import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
 
 interface IArticleParamsFormProps {
-	setApplyOptionState: React.Dispatch<
-		React.SetStateAction<typeof defaultArticleState>
-	>;
+	setApplyOptionState: React.Dispatch<React.SetStateAction<ArticleStateType>>;
 }
 
 export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
-	const [isOpen, setIsOpen] = useState(true);
-	const [tempOptionsState, setTempOptionsState] = useState({
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [tempOptionsState, setTempOptionsState] = useState<ArticleStateType>({
 		...defaultArticleState,
 	});
 
-	const rootRef = useRef(null);
+	const rootRef = useRef<HTMLDivElement>(null);
 
 	useOutsideClickClose({
 		isOpen,
@@ -41,13 +40,13 @@ export const ArticleParamsForm = (props: IArticleParamsFormProps) => {
 		onChange: setIsOpen,
 	});
 
-	const handleOnChange = (name: string) => (selectedOption: OptionType) => {
-		console.log(`Изменён ${name}:`, selectedOption);
-		setTempOptionsState({
-			...tempOptionsState,
-			[name]: selectedOption,
-		});
-	};
+	const handleOnChange =
+		(name: keyof ArticleStateType) => (selectedOption: OptionType) => {
+			setTempOptionsState({
+				...tempOptionsState,
+				[name]: selectedOption,
+			});
+		};
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
